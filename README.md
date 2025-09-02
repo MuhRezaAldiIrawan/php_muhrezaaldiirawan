@@ -17,13 +17,14 @@ Sebelum menjalankan aplikasi, pastikan Anda sudah menyiapkan environment berikut
 
 ## 📂 Struktur Folder
 
+```
 .
-├── soal1.php # Aplikasi Soal 1 (Form Dinamis)
-├── soal2.php # Aplikasi Soal 2 (Laporan Hobi)
-├── db.php # File koneksi database (untuk Soal 2)
-├── import.sql # Struktur & data sample untuk database testdb
-└── README.md # Dokumentasi
-
+├── soal1.php        # Aplikasi Soal 1 (Form Dinamis)
+├── soal2.php        # Aplikasi Soal 2 (Laporan Hobi)
+├── db.php           # File koneksi database (untuk Soal 2)
+├── import.sql       # Struktur & data sample untuk database testdb
+└── README.md        # Dokumentasi
+```
 
 ---
 
@@ -39,10 +40,9 @@ Aplikasi ini membuat form dinamis berdasarkan input jumlah baris & kolom.
 1. Simpan file `soal1.php` di folder web server (misalnya `htdocs/soal1.php` jika pakai XAMPP).
 2. Jalankan server Apache + MySQL.
 3. Buka browser lalu akses:
-
-http://localhost/soal1.php
-
-
+   ```
+   http://localhost/soal1.php
+   ```
 4. Isi jumlah baris & kolom → submit → isi data → submit → lihat hasil.
 
 ---
@@ -56,6 +56,7 @@ Aplikasi ini menggunakan **MySQL database `testdb`** dengan 2 tabel:
 
 Aplikasi menampilkan laporan:
 - List hobi beserta jumlah orang yang memiliki hobi tersebut.
+- Urut berdasarkan jumlah person terbanyak.
 - Fitur **search by hobi** untuk filter data.
 
 ### 🗄️ Struktur Database
@@ -84,33 +85,76 @@ Contoh tabel:
 
 ### ▶️ Cara Menjalankan
 1. Import database:
-```bash
-mysql -u root -p < import.sql
+   ```bash
+   mysql -u root -p < import.sql
+   ```
+   > Jika pakai phpMyAdmin, bisa langsung **Import → pilih file `import.sql`**.
 
-Jika pakai phpMyAdmin, bisa langsung Import → pilih file import.sql
+2. Sesuaikan koneksi database di file `db.php`:
+   ```php
+   <?php
+   $host = "localhost";
+   $user = "root";      // ganti sesuai user MySQL
+   $pass = "";          // ganti sesuai password MySQL
+   $db   = "testdb";    // nama database
+   $mysqli = new mysqli($host, $user, $pass, $db);
+   if ($mysqli->connect_errno) {
+       die("Failed to connect to MySQL: " . $mysqli->connect_error);
+   }
+   ?>
+   ```
 
-Sesuaikan koneksi database di file dbconnection.php
+3. Simpan file `soal2.php` & `db.php` di folder web server (misalnya `htdocs/soal2.php`).
+4. Jalankan server Apache + MySQL.
+5. Buka browser lalu akses:
+   ```
+   http://localhost/soal2.php
+   ```
 
-<?php
-$host = "localhost";
-$user = "root";      // ganti sesuai user MySQL
-$pass = "";          // ganti sesuai password MySQL
-$db   = "testdb";    // nama database
-$mysqli = new mysqli($host, $user, $pass, $db);
-if ($mysqli->connect_errno) {
-    die("Failed to connect to MySQL: " . $mysqli->connect_error);
-}
-?>
+### 🔍 Fitur
+- Tabel laporan hobi dan jumlah person.
+- Urut dari jumlah terbanyak.
+- Kolom pencarian `search by hobi`.
+- Tombol reset untuk kembali ke semua data.
 
+---
 
-2. Simpan file soal2.php & db.php di folder web server (misalnya htdocs/soal2.php).
+## 🎨 Tampilan (Bootstrap 5)
+- **Card layout** untuk form & tabel.
+- **List group** untuk hasil input (Soal 1).
+- **Table striped** untuk laporan hobi (Soal 2).
+- Responsive design.
 
-3. Jalankan server Apache + MySQL.
+---
 
-4. Buka browser lalu akses:
+## ✅ Contoh Output
 
-http://localhost/soal2.php
+### Soal 1
+1. Input jumlah baris = 1, kolom = 3.  
+2. Isi data → `a`, `b`, `c`.  
+3. Output:
+   ```
+   1.1 : a
+   1.2 : b
+   1.3 : c
+   dst
+   ```
 
+### Soal 2
+Laporan:
+| hobi    | jumlah person |
+|---------|---------------|
+| renang  | 3             |
+| membaca | 2             |
+| menulis | 1             |
+| futsal  | 1             |
 
+---
 
+## 🤝 Kontribusi
+Silakan fork repo ini, lalu pull request jika ingin menambahkan fitur (misalnya detail person per hobi).
 
+---
+
+## 📜 Lisensi
+Proyek ini menggunakan lisensi **MIT** – bebas digunakan dan dimodifikasi.
