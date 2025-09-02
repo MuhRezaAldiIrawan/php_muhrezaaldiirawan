@@ -103,11 +103,11 @@ if ($mysqli->connect_errno) {
 ?>
 
 
-Simpan file soal2.php & db.php di folder web server (misalnya htdocs/soal2.php).
+2. Simpan file soal2.php & db.php di folder web server (misalnya htdocs/soal2.php).
 
-Jalankan server Apache + MySQL.
+3. Jalankan server Apache + MySQL.
 
-Buka browser lalu akses:
+4. Buka browser lalu akses:
 
 http://localhost/soal2.php
 
