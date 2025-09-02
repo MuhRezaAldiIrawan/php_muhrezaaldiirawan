@@ -113,17 +113,8 @@ Contoh tabel:
 
 ### 🔍 Fitur
 - Tabel laporan hobi dan jumlah person.
-- Urut dari jumlah terbanyak.
 - Kolom pencarian `search by hobi`.
 - Tombol reset untuk kembali ke semua data.
-
----
-
-## 🎨 Tampilan (Bootstrap 5)
-- **Card layout** untuk form & tabel.
-- **List group** untuk hasil input (Soal 1).
-- **Table striped** untuk laporan hobi (Soal 2).
-- Responsive design.
 
 ---
 
@@ -150,11 +141,3 @@ Laporan:
 | futsal  | 1             |
 
 ---
-
-## 🤝 Kontribusi
-Silakan fork repo ini, lalu pull request jika ingin menambahkan fitur (misalnya detail person per hobi).
-
----
-
-## 📜 Lisensi
-Proyek ini menggunakan lisensi **MIT** – bebas digunakan dan dimodifikasi.
